@@ -36,4 +36,28 @@ def get_sales_data():
     data_str = input("Enter your data here: ")
     print(f"The data provided is {data_str}")
 
+    
+
+# pick the data entered as string and split them into a list
+# reason why: data must be in a list to update the google sheet
+
+    sales_data = data_str.split(",")
+    validate_data(sales_data)
+
+def validate_data(values):
+    """
+    Inside the try converts all string values into integers
+    Returns valueError if strings cannot be converted into int
+    or if there aren't exactly 6 values
+    """
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                f"We expect 6 values, you provided {len(values)}"
+            )
+    except ValueError as e:
+
+        print(f"Invalid data: {e}, please try again.\n")
+    
+
 get_sales_data()
